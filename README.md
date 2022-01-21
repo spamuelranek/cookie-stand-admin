@@ -2,7 +2,7 @@
 - None
 
 ## Pull Request
-- [Pull request Jan 20, 2021]()
+- [Pull request Jan 20, 2021](https://github.com/spamuelranek/cookie-stand-admin/pull/1)
 
 
 
