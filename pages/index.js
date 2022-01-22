@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import styles from '../styles/Home.module.css'
-import Header from './Header.js'
-import Main from './Main.js'
-import Footer from './Footer.js'
+
+
+import Header from '../components/Header.js'
+import Main from '../components/Main.js'
+import Footer from '../components/Footer.js'
 
 export default function Home() {
   return (
