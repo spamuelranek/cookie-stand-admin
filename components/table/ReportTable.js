@@ -1,46 +1,67 @@
-import {getTotals, grandTotal, getLocationSales} from "./TableMath"
+import useResource from "../../hooks/useResource";
+import { TimeContext } from "../Main";
+import { getTotals, GrandTotal, GetLocationSales } from "./TableMath"
+import React from "react";
 
-function manageShowTable(props) {
+function ShowTable() {
 
-  if (props.data.length == 0) {
-    return <h2> No Cookie Stands Available</h2>
+  const { resources } = useResource()
+
+
+  if (resources) {
+    return < DisplayTable resources={resources} />
   }
   else {
-    return displayTable(props)
+    return <h2> No Cookie Stands Available</h2>
   }
 }
 
-function displayTable(props) {
+function DisplayTable({resources}) {
 
-  const timesTd = props.times.map(time => <td key={time}>{time}</td>)
+  const times = React.useContext(TimeContext)
 
-  const data = props.data.map(location =>
-    getLocationSales(location)
-  )
+  function TimesTd(){
+    return times.map(time => <td key={time}>{time}</td>);
+  }
 
-  const totals = props.times.map((time, index) =>
-    <td key={time} className=" border-black border-2 ">{getTotals(index, props)}</td>
-  )
+  function Data(){
+    return resources.map((location, index) =>
+      {let color = ""
+        if (index % 2 == 0){
+        color ="bg-emerald-300" 
+      } 
+      else { color ="bg-emerald-200"}
+
+      return <GetLocationSales color={color} key ={location.location} location ={location} />
+      });
+  } 
+
+  function Totals(){
+    return times.map((time, index) =>
+      <td key={time} className=" border-black border-2 ">{getTotals(index, resources)}</td>
+    );
+
+  } 
 
 
   return (
     <section className=' text-center mb-10'>
-      <table className="mx-auto bg-emerald-300 w-5/6" >
+      <table className="mx-auto  w-5/6" >
         <thead className=" bg-emerald-500 px-3 py-1">
           <tr>
             <td className="text-left">Location</td>
-            {timesTd}
+            <TimesTd />
             <td className="text-left">Totals</td>
           </tr>
         </thead>
         <tbody>
-          {data}
+          <Data resources = {resources}/>
         </tbody>
         <tfoot className=" bg-emerald-500 px-3 py-1">
           <tr>
             <td className=" border-black border-2 text-left">Totals</td>
-            {totals}
-            {grandTotal(props)}
+            <Totals resources = {resources}/>
+            <GrandTotal />
           </tr>
         </tfoot>
       </table>
@@ -48,11 +69,11 @@ function displayTable(props) {
   )
 }
 
-export default function ReportTable(props) {
+export default function ReportTable() {
 
   return (
     <div className=" text-center">
-      {manageShowTable(props)}
+      <ShowTable />
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import FormLabel from "./FormLabel";
 import FormLeftLabel from "./FormLeftLabel";
 
-export default function Form(props) {
+export default function Form({handleForm}) {
   return (
-    <form className = "p-4 bg-emerald-400 w-5/6 mx-auto my-5 rounded-md" onSubmit={props.handleForm}>
+    <form className = "p-4 bg-emerald-400 w-5/6 mx-auto my-5 rounded-md" onSubmit={handleForm}>
       <FormLeftLabel label="Location" name="location" />
       <div className='flex p-3 justify-between items-center '>
         <FormLabel label="Minimum Customers per Hour" name="minCust" />
