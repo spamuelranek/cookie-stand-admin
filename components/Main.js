@@ -1,8 +1,7 @@
 
 import { useState } from "react"
-import { hourlySale } from "../data";
-import Form from "./Form";
-import ReportTable from "./ReportTable";
+import Form from "./form/Form";
+import ReportTable from "./table/ReportTable";
 
 
 
@@ -16,13 +15,17 @@ export default function Main() {
   function handleForm(e) {
     e.preventDefault();
     console.log("woot");
-    const [location, minCust, maxCust, avgCust] = e.target
+    const {location, minCust, maxCust, avgCust} = e.target
     
     //generates random amount of sales per hour 
     let storeDailyTotal = 0
     const hourlySale = timesOfOperation.map(time => {
-      const randomAmountOfcustomers = Math.floor(Math.random() * (maxCust.value - minCust.value)) + minCust.value
+      const floor = Math.floor(Math.random() * (maxCust.value - minCust.value + 1))
+      const randomAmountOfcustomers = floor + parseInt(minCust.value)
+      console.log("randomAmount:",randomAmountOfcustomers)
+
       const cookiesSold = randomAmountOfcustomers * avgCust.value
+
       storeDailyTotal = storeDailyTotal + cookiesSold
       return cookiesSold
     })
@@ -32,12 +35,9 @@ export default function Main() {
   }
 
   return (
-    <main className=''>
-      <div className=' bg-emerald-400 w-3/4 mx-auto my-5 rounded-md'>
-        <h2 className=' text-center py-3'>Create Cookie Stand</h2>
-        <Form handleForm={handleForm} />
-      </div>
-      <ReportTable data={totalLocationData} times = {timesOfOperation} />
+    <main>
+      <Form handleForm={handleForm} />
+      <ReportTable className = "w-5/6" data={totalLocationData} times = {timesOfOperation} />
     </main>
   )
 }
