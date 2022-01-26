@@ -1,11 +1,13 @@
 ## Deployment
-- None
+- [Front End](https://cookie-stand-admin-gold.vercel.app/)
 
 ## Pull Request
 - [Pull request Jan 20, 2022](https://github.com/spamuelranek/cookie-stand-admin/pull/1)
 - [Pull request Jan 21, 2022 for Lab: 38](https://github.com/spamuelranek/cookie-stand-admin/pull/3)
 - [Pull request Jan 24, 2022 for Lab: 38](https://github.com/spamuelranek/cookie-stand-admin/pull/5)
 - [Pull request Jan 24, 2022 for Lab: 39](https://github.com/spamuelranek/cookie-stand-admin/pull/4)
+- [Pull request Jan 25, 2022 for Lab: 41]()
+
 
 
 
